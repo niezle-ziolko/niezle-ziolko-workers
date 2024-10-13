@@ -16,50 +16,43 @@ export default {
   async fetch(request) {
     try {
       const url = new URL(request.url);
+      const bypass = url.searchParams.get('cf-worker') === 'bypass';
+      const method = request.method === 'GET';
 
-      if (
-        url.pathname.match(/\.(gif|png|jpg|jpeg|webp|bmp|ico|svg)$/i)
-      ) {
+      if (method && url.pathname.match(/\.(woff)$/i)) {
+        const accept = request.headers.get('Accept');
+
+        if (url.pathname.startsWith('/niezleziolko.app/')) {
+          return await proxyRequest('https:/' + url.pathname + url.search, request);
+        } else if (accept && (accept.indexOf('text/html') >= 0 || accept.indexOf('text/css') >= 0)) {
+          if (url.pathname.startsWith('/niezleziolko.app/')) {
+            return await proxyStylesheet('https:/' + url.pathname + url.search, request);
+          } else {
+            const event = { request };
+
+            return await processRequest(request, event);
+          };
+        };
+      };
+
+      if (method && url.pathname.match(/\.(gif|png|jpg|jpeg|webp|bmp|ico|svg)$/i)) {
         return await fetchFromImageEngine(request);
+      };
+
+      if (!bypass) {
+        const accept = request.headers.get('accept');
+
+        if (method && isProxyRequest(url)) {
+          return await proxyUrl(url, request);
+        } else if (accept && accept.indexOf('text/html') >= 0) {
+          return await processHtmlRequest(request);
+        };
       };
 
       return await fetch(request);
     } catch (e) {
       console.log('Wystąpił błąd:', e);
-
       return new Response('Wystąpił błąd podczas przetwarzania żądania.', { status: 500 });
     };
   }
 };
-
-addEventListener('fetch', event => {
-  event.passThroughOnException();
-
-  const url = new URL(event.request.url);
-  const bypass = new URL(event.request.url).searchParams.get('cf-worker') === 'bypass';
-
-  if (!bypass) {
-    let accept = event.request.headers.get('accept');
-
-    if (event.request.method === 'GET' && isProxyRequest(url)) {
-      event.respondWith(proxyUrl(url, event.request));
-    } else if (accept && accept.indexOf('text/html') >= 0) {
-      event.respondWith(processHtmlRequest(event.request));
-    };
-  };
-
-  if (event.request.method === 'GET') {
-    const url = new URL(event.request.url);
-    const accept = event.request.headers.get('Accept');
-    
-    if (url.pathname.startsWith('/niezleziolko.app/')) {
-      event.respondWith(proxyRequest('https:/' + url.pathname + url.search, event.request));
-    } else if (accept && (accept.indexOf('text/html') >= 0 || accept.indexOf('text/css') >= 0)) {
-      if (url.pathname.startsWith('/niezleziolko.app/')) {
-        event.respondWith(proxyStylesheet('https:/' + url.pathname + url.search, event.request));
-      } else {
-        event.respondWith(processRequest(event.request, event));
-      };
-    };
-  };
-});

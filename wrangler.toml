@@ -6,14 +6,14 @@ compatibility_flags = ["nodejs_compat"]
 workers_dev = false
 
 routes = [
+  { pattern = "*niezleziolko.app/static/BalsamiqSans-*", zone_name = "niezleziolko.app" },
+  { pattern = "*niezleziolko.app/static/Icons-*", zone_name = "niezleziolko.app" },
   { pattern = "*niezleziolko.app/static/*", zone_name = "niezleziolko.app" },
   { pattern = "*niezleziolko.app/sibautomation.com/", zone_name = "niezleziolko.app" },
   { pattern = "*niezleziolko.app/api.pushowl.com/", zone_name = "niezleziolko.app" },
   { pattern = "*niezleziolko.app/cdn.pushowl.com/", zone_name = "niezleziolko.app" },
   { pattern = "*niezleziolko.app/in-automate.brevo.com/", zone_name = "niezleziolko.app" },
-  { pattern = "*niezleziolko.app/furgonetka.pl/", zone_name = "niezleziolko.app" },
-  { pattern = "*niezleziolko.app/static/BalsamiqSans-*", zone_name = "niezleziolko.app" },
-  { pattern = "*niezleziolko.app/static/Icons-*", zone_name = "niezleziolko.app" },
+  { pattern = "*niezleziolko.app/furgonetka.pl/", zone_name = "niezleziolko.app" }
 ]
 
 [observability]

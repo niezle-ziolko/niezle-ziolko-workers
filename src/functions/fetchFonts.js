@@ -1,4 +1,9 @@
-const VALID_CHARSETS = ['utf-8', 'utf8', 'iso-8859-1', 'us-ascii'];
+const VALID_CHARSETS = [
+  'utf-8',
+  'utf8',
+  'iso-8859-1',
+  'us-ascii'
+];
 
 export async function proxyRequest(url, request) {
   let init = {
@@ -6,7 +11,13 @@ export async function proxyRequest(url, request) {
     headers: {},
   };
 
-  const proxyHeaders = ['Accept', 'Accept-Encoding', 'Accept-Language', 'Referer', 'User-Agent'];
+  const proxyHeaders = [
+    'Accept',
+    'Accept-Encoding',
+    'Accept-Language',
+    'Referer',
+    'User-Agent'
+  ];
   
   for (let name of proxyHeaders) {
     let value = request.headers.get(name);
@@ -229,7 +240,7 @@ async function modifyHtmlStream(readable, writable, request, event, embedStylesh
           partial = await modifyHtmlChunk(partial, request, event, embedStylesheet);
           await writer.write(encoder.encode(partial));
           partial = '';
-        }
+        };
 
         break;
       };
