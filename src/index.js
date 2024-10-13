@@ -1,13 +1,13 @@
 import {
-  proxyUrl,
-  isProxyRequest,
-  processHtmlRequest
-} from './functions/fetchThirdParty';
-import {
   proxyRequest,
   processRequest,
   proxyStylesheet
 } from './functions/fetchFonts';
+import {
+  proxyUrl,
+  isProxyRequest,
+  processHtmlRequest
+} from './functions/fetchThirdParty';
 
 import { fetchFromImageEngine } from './functions/fetchImages';
 

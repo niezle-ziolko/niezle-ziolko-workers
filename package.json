@@ -1,6 +1,6 @@
 {
-  "name": "niezle-ziolko-image-engine",
-  "version": "0.0.0",
+  "name": "niezle-ziolko-workers",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "deploy": "wrangler deploy",
