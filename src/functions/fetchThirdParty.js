@@ -1,4 +1,5 @@
 const SCRIPT_URLS = [
+  '/static.cloudflareinsights.com/',
   '/sibautomation.com/',
   '/api.pushowl.com/',
   '/cdn.pushowl.com/',

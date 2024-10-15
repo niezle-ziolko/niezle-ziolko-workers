@@ -52,6 +52,7 @@ export default {
       return await fetch(request);
     } catch (e) {
       console.log('Wystąpił błąd:', e);
+      
       return new Response('Wystąpił błąd podczas przetwarzania żądania.', { status: 500 });
     };
   }

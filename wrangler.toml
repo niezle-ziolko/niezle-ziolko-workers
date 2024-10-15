@@ -9,6 +9,7 @@ routes = [
   { pattern = "*niezleziolko.app/static/BalsamiqSans-*", zone_name = "niezleziolko.app" },
   { pattern = "*niezleziolko.app/static/Icons-*", zone_name = "niezleziolko.app" },
   { pattern = "*niezleziolko.app/static/*", zone_name = "niezleziolko.app" },
+  { pattern = "*niezleziolko.app/static.cloudflareinsights.com/", zone_name = "niezleziolko.app" },
   { pattern = "*niezleziolko.app/sibautomation.com/", zone_name = "niezleziolko.app" },
   { pattern = "*niezleziolko.app/api.pushowl.com/", zone_name = "niezleziolko.app" },
   { pattern = "*niezleziolko.app/cdn.pushowl.com/", zone_name = "niezleziolko.app" },

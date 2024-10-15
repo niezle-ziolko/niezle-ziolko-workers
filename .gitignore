@@ -170,3 +170,7 @@ dist
 
 .dev.vars
 .wrangler/
+
+# gitpod configuration
+
+.gitpod.yml
