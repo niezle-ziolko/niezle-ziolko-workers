@@ -1,5 +1,7 @@
 const SCRIPT_URLS = [
   '/static.cloudflareinsights.com/',
+  '/cdn-cgi/zaraz/s.js',
+  '/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js',
   '/sibautomation.com/',
   '/api.pushowl.com/',
   '/cdn.pushowl.com/',
