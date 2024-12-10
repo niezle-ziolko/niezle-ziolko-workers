@@ -166,7 +166,7 @@ async function processStylesheetResponse(response, request, event) {
 
   try {
     body = await response.text();
-    const fontCSSRegex = /@import\s*(url\s*)?[\('"\s]+((https?:)?\/\/niezleziolko.app\/static\/(Icons|BalsamiqSans)-[^'"\)]+)[\s'"\)]+\s*;/gim;
+    const fontCSSRegex = /@import\s*(url\s*)?[$'"\s]+(https?:\/\/niezleziolko\.app\/[^'"$]+\.(woff|woff2|ttf|svg|eot))[\s'"\)]+\s*;/gim;
     let match = fontCSSRegex.exec(body);
     
     while (match !== null) {
@@ -321,7 +321,7 @@ async function modifyHtmlStream(readable, writable, request, event, embedStylesh
 };
 
 async function modifyHtmlChunk(content, request, event, embedStylesheet) {
-  const fontCSSRegex = /<link\s+[^>]*href\s*=\s*['"]((https?:)?\/\/niezleziolko.app\/static\/(Icons|BalsamiqSans)-[^'"]+)[^>]*>/gim;
+  const fontCSSRegex = /<link\s+[^>]*href\s*=\s*['"]((https?:\/\/niezleziolko\.app\/[^'"]+\.(woff|woff2|ttf|svg|eot)))[^>]*>/gim;
   let match = fontCSSRegex.exec(content);
 
   while (match !== null) {
@@ -410,7 +410,7 @@ async function fetchCSS(url, request) {
 
       if (response && response.status === 200) {
         fontCSS = await response.text();
-        fontCSS = fontCSS.replace(/(https?:)?\/\/niezleziolko\.app\/static\/.*?\.woff(2)?/gim, '/static/');
+        fontCSS = fontCSS.replace(/(https?:\/\/niezleziolko\.app\/.*?\.(woff|woff2|ttf|svg|eot))/gim, '/_next/static/media/');
         FONT_CACHE[cacheKey] = fontCSS;
 
         try {

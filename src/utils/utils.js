@@ -36,7 +36,7 @@ export async function proxyUrl(url, request) {
 
 	let init = {
 		method: request.method,
-		headers: {},
+		headers: {}
 	};
 
   const clientAddr = request.headers.get('cf-connecting-ip');
@@ -58,7 +58,7 @@ export async function proxyUrl(url, request) {
 		let responseInit = {
 			status: response.status,
 			statusText: response.statusText,
-			headers: {},
+			headers: {}
 		};
 
 		for (let name of RESPONSE_HEADERS) {

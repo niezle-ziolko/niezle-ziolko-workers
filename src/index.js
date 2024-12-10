@@ -1,15 +1,6 @@
-import {
-  proxyRequest,
-  processRequest,
-  proxyStylesheet
-} from './functions/fetchFonts';
-import {
-  proxyUrl,
-  isProxyRequest,
-  processHtmlRequest
-} from './functions/fetchThirdParty';
-
-import { fetchFromImageEngine } from './functions/fetchImages';
+import { fetchFromImageEngine } from './functions/fetch-images';
+import { proxyRequest, processRequest, proxyStylesheet } from './functions/fetch-fonts';
+import { proxyUrl, isProxyRequest, processHtmlRequest } from './functions/fetch-third-party';
 
 
 export default {
@@ -51,9 +42,9 @@ export default {
 
       return await fetch(request);
     } catch (e) {
-      console.log('Wystąpił błąd:', e);
+      console.log('Fetch error:', e);
       
-      return new Response('Wystąpił błąd podczas przetwarzania żądania.', { status: 500 });
+      return new Response('Fetch error.', { status: 500 });
     };
   }
 };

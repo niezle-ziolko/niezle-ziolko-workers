@@ -34,7 +34,7 @@ export async function proxyUrl(url, request) {
 
 	let init = {
 		method: request.method,
-		headers: {},
+		headers: {}
 	};
 
 	const proxy_headers = ['Accept', 'Accept-Encoding', 'Accept-Language', 'Referer', 'User-Agent'];
@@ -160,6 +160,7 @@ async function modifyHtmlStream(readable, writable, request) {
 
 	for (let scriptUrl of SCRIPT_URLS) {
 		let regex = new RegExp(SCRIPT_PRE + scriptUrl + PATTERN_POST, 'gi');
+		
 		patterns.push(regex);
 	};
 
