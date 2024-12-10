@@ -24,7 +24,7 @@ export async function proxyRequest(url, request) {
 
     if (value) {
       init.headers[name] = value;
-    }
+    };
   };
 
   const clientAddr = request.headers.get('cf-connecting-ip');

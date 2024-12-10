@@ -14,6 +14,7 @@ const VALID_CHARSETS = ['utf-8', 'utf8', 'iso-8859-1', 'us-ascii'];
 export function isProxyRequest(url) {
 	let found_prefix = false;
 	const path = url.pathname + url.search;
+  
 	for (let prefix of SCRIPT_URLS) {
 		if (path.startsWith(prefix) && path.indexOf('cf_hash=') >= 0) {
 			found_prefix = true;
@@ -160,7 +161,7 @@ async function modifyHtmlStream(readable, writable, request) {
 
 	for (let scriptUrl of SCRIPT_URLS) {
 		let regex = new RegExp(SCRIPT_PRE + scriptUrl + PATTERN_POST, 'gi');
-		
+
 		patterns.push(regex);
 	};
 
@@ -249,7 +250,7 @@ async function modifyHtmlChunk(content, patterns, request) {
 
 	for (let pattern of patterns) {
 		let match = pattern.exec(content);
-    
+
 		while (match !== null) {
 			const originalUrl = match[1];
 			let fetchUrl = originalUrl;

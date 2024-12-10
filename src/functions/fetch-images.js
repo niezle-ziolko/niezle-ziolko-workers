@@ -14,7 +14,7 @@ export async function fetchFromImageEngine(request) {
     });
     return response;
   } catch (error) {
-    console.log('Błąd podczas pobierania obrazu:', error);
+    console.log('Fetch image error:', error);
 		
     return new Response(null, { status: 404 });
   };
